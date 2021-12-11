@@ -1,8 +1,9 @@
+
 import statistics        
 def check_for_corrupt_line(row):
     stack = []
     stack_top = []
-    print(row)
+#    print(row)
     for element in row:
         if element in left_paren:
            stack.append(element)
@@ -16,36 +17,37 @@ def check_for_corrupt_line(row):
                 print("newLine or space")
             if stack_top == '(':
                 if element != ")":
-                    print(f"element is {element}")
+#                    print(f"element is {element}")
                     return element
                 
             if stack_top == '<':
                 if element != ">":
-                    print(f"element is {element}")
+#                    print(f"element is {element}")
                     return element
 
             if stack_top == '{':
                 if element != "}":
-                    print(f"element is {element}")
+#                    print(f"element is {element}")
                     return element
 
             if stack_top == '[':
                 if element != "]":
-                    print(f"element is {element}")
+#                    print(f"element is {element}")
                     return element
 
         
     stack2.append(stack)
-
+#    print(stack2)
     if stack:
         print("calling complete_incomplete")
-        process_incomplete(stack2)
+#        process_incomplete(stack2)
         return False
     return True
 
 def process_incomplete(stack2):
     solution = []
     reverse_row = []
+    global rjesenje
     for row in stack2:
         score = 0
         row.reverse()
@@ -66,18 +68,24 @@ def process_incomplete(stack2):
                 reverse_row.append(']')
 #        print(reverse_row)
         solution.append(score) 
+        score = 0
         reverse_row = []
 #        print(solution)
 #        solution.sort()
 #        print(solution)
-        row_len = len(solution)
+    row_len = len(solution)
+    print(f"ROw_len == {row_len}")
+    print(solution)
+    solution.sort()
+    print(solution)
     rjesenje = int(statistics.median(solution))
-#        median = int(row_len / 2) 
-#    print(solution[median])
-    print(rjesenje)
+#    medijan = int(row_len / 2) + 1 
+#    print(f"Medijan === {medijan}")
+#    print(solution[medijan])
+#    print(rjesenje)
 
 if __name__ == "__main__":
-
+    rjesenje = 0
     f1 = open("day10-test.txt", "r")
     f2 = open("day10.txt", "r")
     input_array = []
@@ -85,7 +93,7 @@ if __name__ == "__main__":
     left_paren = ["(", "[", "{", "<"]
 
     right_paren = [")", "]", "}", ">"]
-    input_array = f1.readlines()
+    input_array = f2.readlines()
     stack2 = []
     score = 0
     for element in input_array:
@@ -100,11 +108,6 @@ if __name__ == "__main__":
             score += right_paren_num_val[err]
         elif err == ")":
             score += right_paren_num_val[err]
-
-print(score)
-
-
-
-#Part Two
-
-
+process_incomplete(stack2)
+print(rjesenje)
+#print(score)
