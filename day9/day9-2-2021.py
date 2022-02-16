@@ -5,7 +5,14 @@
 #ROW_NUM = 100 
 ROW_LEN = 10
 ROW_NUM = 5 
-
+def find_neighbors(node, node_value):
+    directions = [[1,0], [0,1], [-1,0], [0,-1]] 
+    result = []
+    for direct in directions:
+        neighbor = [node[0] + direct[0], node[1] + direct[1]]
+        if 0 <= neighbor[0] < ROW_NUM and 0 <= neigbor[1] < ROW_LEN:
+            if 
+            pass
 if __name__ == '__main__':
     in_string = []
     low_list = []
@@ -94,8 +101,10 @@ if __name__ == '__main__':
     #print(in_list)
     print(50 * "-" + f"\nGrid: \n{grid}\n" + 50 *"-")
     print(f"lenght of Grid list: {len(grid)}")
-
+    low_pos_list = []
     for (key, value) in low_pos_dict.items():
         print(f"{key[0]},{key[1]}")
+        low_pos_list.append([key[0],key[1]])
         print(key)
         print(f"Value of the low point in the grid at the current coordinates: {grid[key[0]][key[1]]}")
+    print(low_pos_list)
