@@ -1,5 +1,5 @@
-import collections
-#from collections import namedtuple
+#import collections
+from collections import namedtuple
 
 if __name__ == '__main__':
     lines = []
