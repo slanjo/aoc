@@ -1,21 +1,104 @@
-DELIMITER = "->"
+DELIMITER = " -> "
+#M = 10
+#N = 10
+M = 1000
+N = 1000
+
+ARR = [[0] * (N) for _ in range (M)]
+
 import collections
 from collections import namedtuple
 
+def line_plot(x1y1, x2y2):
+    x1 = x1y1[0]
+    x2 = x2y2[0]
+    y1 = x1y1[1]
+    y2 = x2y2[1]
+
+    if y1 > y2:
+        biggery = y1
+        smallery = y2
+    elif y2 > y1:
+        biggery = y2
+        smallery = y1
+    else:
+        pass
+
+    if x1 > x2:
+        biggerx = x1
+        smallerx = x2
+    elif x2 > x1:
+        biggerx = x2
+        smallerx = x1
+    else:
+        pass
+#    print(f"x1y1 = {x1y1}, x2y2 = {x2y2}")
+    if abs(x1 - x2) == 0:
+        x = x1
+        for y in range(smallery, biggery + 1, 1):
+                ARR[y][x] += 1
+
+    elif abs(y1 - y2) == 0:
+        y = y1
+        for x in range(smallerx, biggerx + 1, 1):
+                ARR[y][x] += 1
+    else:
+        pass
+
 if __name__ == '__main__':
     lines = []
-    with open("/home/slanjo/Programming/aoc/day5/input.py", "r") as data_in:
+#    with open("/home/slanjo/Programming/aoc/day5/test_input.txt", "r") as data_in:
+    with open("/home/slanjo/Programming/aoc/day5/input.txt", "r") as data_in:
         line = data_in.readlines()
         for string in line:
-            lines.append(string.strip('\n').split(' -> '))
+            lines.append(string.strip('\n').split(DELIMITER))
 
     OneLine = collections.namedtuple('OneLine', 'tocka1, junk, tocka2')
-    print(line)
-    print(len(line))
-    print(lines)
-    print(len(lines))
+    
+    points = [] 
+    for vent_line in lines:
+        for vent_coordinate in vent_line:
+            points.append(vent_coordinate.split(','))
+    coordinates = []    
+    for i in points:
+        i[0] = int(i[0])
+        i[1] = int(i[1])
+        print(f"i = {int(i[0])}")
+        for k in i:
+            coordinates.append(int(k))
+    
+#   for i in coordinates:
+#       if i > 900:
+#           print(i)
+    grid = []
+#   for i in range(0, 1000):
+#       for k in range(0, 1000):
+#           grid.append(0)
 
-    for string in lines:
-        string[0].split(',')
-        string[1].split(',')
+    for i in range(0, 9):
+        for k in range(0, 9):
+            grid.append(0)
+#Create a grid of M * N points)
+    print(grid)
+    print(f"(coordinates)\n {coordinates} \n, {len(coordinates)}")
+    print(100*"*")
+    print(f"lines\n {lines}")
+    print(100*"*")
+    print(f"points\n {points}\nLen of points = {len(points)}")
+    print(100*"*")
+    print(f"arr\n{ARR}")
+    print(f"length of coordinates is {len(coordinates)}")
+    for position in range(0, len(points), 2):
+        line_plot(points[position], points[position+1])
+#   for row in range(0, int(len(coordinates)/4)):
+#       for col in range (0, 4):
+#           print(coordinates[row][col])
+    for line in ARR:
+        print(line)
+    total = 0
+    for line in ARR:
+        for item in line:
+            if item >= 2:
+                total += 1
+    print(f"TOTAL = {total}")
 
