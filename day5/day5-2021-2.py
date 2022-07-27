@@ -15,6 +15,9 @@ def line_plot(x1y1, x2y2):
     y1 = x1y1[1]
     y2 = x2y2[1]
 
+    x_direction = 1
+    y_direction = 1
+
     if y1 > y2:
         biggery = y1
         smallery = y2
@@ -42,8 +45,33 @@ def line_plot(x1y1, x2y2):
         y = y1
         for x in range(smallerx, biggerx + 1, 1):
                 ARR[y][x] += 1
-    else:
-        pass
+
+    elif (y1 -  y2) / (x1 - x2) == 1:
+        print(f"SLOPE = {(y1 -  y2) / (x1 - x2)}\n -----------------")
+        if x1 > x2 and y1 > y2:
+            for x in range(x2, x1 + 1, 1):
+                ARR[y2][x] += 1
+                y2 += 1
+
+        if x1 < x2 and y1 < y2:
+            for x in range(x1, x2 + 1, 1):
+                ARR[y1][x] += 1
+                y1 += 1
+###############
+    elif (y1 -  y2) / (x1 - x2) == -1:
+        print(f"SLOPE = {(y1 -  y2) / (x1 - x2)}\n -----------------")
+        if x1 < x2 and y1 > y2:
+            for x in range(x1, x2 + 1, 1):
+                ARR[y1][x] += 1
+                y1 -= 1
+
+        if x1 > x2 and y1 < y2:
+            for x in range(x2, x1 + 1, 1):
+                ARR[y2][x] += 1
+                y2 -= 1
+
+
+        
 
 if __name__ == '__main__':
     lines = []
