@@ -8,7 +8,7 @@
 """
 from ulaz import test_input, input, sat1_input
 from collections import OrderedDict
-START_SCHOOL = OrderedDict()
+START_SCHOOL = ()
 
 def model_lanternfish(NEW_SCHOOL):
 
@@ -31,8 +31,8 @@ if __name__ == '__main__':
     NEW_SCHOOL = START_SCHOOL
 #   print(sat2)
     day = 0 
-    while(day < 80):
-        model_lanternfish(NEW_SCHOOL)
+    while(day < 256):
+        model_lanternfish(START_SCHOOL)
         day += 1 
 
 #   for key, value in START_SCHOOL.items():
