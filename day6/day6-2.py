@@ -25,7 +25,7 @@ def solve(S, n):
     for day in range(n):
         Y = defaultdict(int)
         for x, cnt in X.items():
-            print(f"day={day} | x={x} | cnt={cnt}")
+#           print(f"day={day} | x={x} | cnt={cnt}")
             if x == 0:
                 Y[6] += cnt
                 Y[8] += cnt
@@ -33,8 +33,7 @@ def solve(S, n):
                 Y[x - 1] += cnt
         X = Y
     return(sum(X.values()))
-print(solve(X, 1))
-print("="*40)
 print(solve(X, 80))
-#print(solve(X, 256))
+print("="*40)
+print(solve(X, 256))
 
