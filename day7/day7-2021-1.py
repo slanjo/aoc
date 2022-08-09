@@ -1,6 +1,10 @@
-from ../aoc import get_input
+#from aoc import get_input
+import sys
 
-data = get_input(1).splitlines()
+if __name__ == "__main__":
+    f = sys.argv[1] if len(sys.argv) > 1 else '7.in'
+#    data = get_input(1).splitlines()
 
-for line in data:
-    print(line)
+    moja_lista = [int(x) for x in open(f).read().strip().split(",")]
+
+    
