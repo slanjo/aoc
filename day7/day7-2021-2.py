@@ -27,14 +27,10 @@ if __name__ == "__main__":
             temp_list.append(abs(crab - input_list[indx]))
         cost_dict[crab] = temp_list
 
-#        for key, value in cost_dict.items():
-#            for i in value:
-#                
-#                recurse_helper(MAKS)
         for indx in range(1, MAKS + 1):
-#            dist = abs(crab - indx)
             cost = recurse_helper(abs(crab - indx))
             cost_list_2.append(cost)
+
         cost_dict_2[crab] = cost_list_2
         cost_2d.append(cost_list_2)
         cost_list_2 = []    
@@ -42,16 +38,12 @@ if __name__ == "__main__":
         temp_list = []
     solution1 = 1_000_000_000_000_000_000_000_000 
 
-#    for crab, value in cost_dict_2.items():
-#        print(f"{crab} --> {value}")
-
     for key, value in cost_dict.items():
         total_new = 0
         for tally in value:
             total_new += tally 
         if total_new < solution1:
             solution1 = total_new
-#        print(f"key = {key}, list = {value} total = {total_new}")
         
     print(f"Solution part 1: {solution1}")
     for item in cost_2d:
