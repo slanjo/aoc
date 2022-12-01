@@ -1,53 +1,24 @@
-from __future__ import annotations
-
-import argparse
-import os.path
-
-import pytest
-
-import support
-
-INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 
 
-def compute(s: str) -> int:
-    n = 0
-    for c in s.strip():
-        if c == '(':
-            n += 1
-        elif c == ')':
-            n -= 1
+if __name__ == "__main__":
+
+    elf_kcal_raw = []
+    elf_kcal = []
+    max_elf_kcal = 0
+    max_elf_kcal_run = 0
+
+    with open("input.txt", "r") as f:
+        elf_kcal_raw = f.readlines()
+        for food in elf_kcal_raw:
+            elf_kcal.append(food.strip('\n'))
+    for kcal in elf_kcal:
+        if kcal == '': 
+            if max_elf_kcal_run > max_elf_kcal:
+                max_elf_kcal = max_elf_kcal_run
+            max_elf_kcal_run = 0
+
         else:
-            raise AssertionError(f'unexpected: {c!r}')
-    return n
+            max_elf_kcal_run += int(kcal)
+    print(max_elf_kcal)
 
-
-INPUT_S = '''\
-))(((((
-'''
-EXPECTED = 3
-
-
-@pytest.mark.parametrize(
-    ('input_s', 'expected'),
-    (
-        (INPUT_S, EXPECTED),
-    ),
-)
-def test(input_s: str, expected: int) -> None:
-    assert compute(input_s) == expected
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('data_file', nargs='?', default=INPUT_TXT)
-    args = parser.parse_args()
-
-    with open(args.data_file) as f, support.timing():
-        print(compute(f.read()))
-
-    return 0
-
-
-if __name__ == '__main__':
-    raise SystemExit(main())
+    

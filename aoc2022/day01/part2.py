@@ -1,55 +1,37 @@
-from __future__ import annotations
-
-import argparse
-import os.path
-
-import pytest
-
-import support
-
-INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 
 
-def compute(s: str) -> int:
-    n = 0
-    for i, c in enumerate(s.strip(), start=1):
-        if c == '(':
-            n += 1
-        elif c == ')':
-            n -= 1
-            if n == -1:
-                return i
+if __name__ == "__main__":
+
+    elf_kcal_raw = []
+    elf_kcal = []
+    max_elf_kcal = 0
+    max_elf_kcal_run = 0
+    top_three = [0, 0, 0]
+
+    with open("input.txt", "r") as f:
+        elf_kcal_raw = f.readlines()
+        for food in elf_kcal_raw:
+            elf_kcal.append(food.strip('\n'))
+    for kcal in elf_kcal:
+        if kcal == '': 
+            if max_elf_kcal_run > top_three[2]:
+                if max_elf_kcal_run > top_three[1]:
+                    if max_elf_kcal_run > top_three[0]:
+                        top_three[2] = top_three[1]
+                        top_three[1] = top_three[0]
+                        top_three[0] = max_elf_kcal_run
+                    else: 
+                        top_three[2] = top_three[1]
+                        top_three[1] = max_elf_kcal_run
+                else:
+                    top_three[2] = max_elf_kcal_run
+
+            max_elf_kcal_run = 0
         else:
-            raise AssertionError(f'unexpected: {c!r}')
-    raise AssertionError('unreachable')
-
-
-INPUT_S = '''\
-()())
-'''
-EXPECTED = 5
-
-
-@pytest.mark.parametrize(
-    ('input_s', 'expected'),
-    (
-        (INPUT_S, EXPECTED),
-    ),
-)
-def test(input_s: str, expected: int) -> None:
-    assert compute(input_s) == expected
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('data_file', nargs='?', default=INPUT_TXT)
-    args = parser.parse_args()
-
-    with open(args.data_file) as f, support.timing():
-        print(compute(f.read()))
-
-    return 0
-
-
-if __name__ == '__main__':
-    raise SystemExit(main())
+            max_elf_kcal_run += int(kcal)
+#    print(f"max cal elf --> {max_elf_kcal}")
+#    print(f"max cal elf array --> {top_three[0]}")
+#    print(f"top three ==> {sum(top_three)}")
+#    print(top_three)
+    print(sum(top_three))
+    

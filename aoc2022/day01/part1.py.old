@@ -11,21 +11,25 @@ INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 
 
 def compute(s: str) -> int:
-    numbers = support.parse_numbers_split(s)
-    for n in numbers:
-        pass
+    n = 0
 
-    lines = s.splitlines()
-    for line in lines:
-        pass
-    # TODO: implement solution here!
-    return 0
+    for c in s.split("\n"):
+        #for c in s.strip():
+        print(f"{c} is type {type(c)}")
+#       if c == '(':
+#           n += 1
+#       elif c == ')':
+#           n -= 1
+#       else:
+#           raise AssertionError(f'unexpected: {c!r}')
+    print(type(s))
+    return n
 
 
 INPUT_S = '''\
-
+))(((((
 '''
-EXPECTED = 1
+EXPECTED = 3
 
 
 @pytest.mark.parametrize(
@@ -45,6 +49,7 @@ def main() -> int:
 
     with open(args.data_file) as f, support.timing():
         print(compute(f.read()))
+        #        print(compute(f.read()))
 
     return 0
 
