@@ -17,20 +17,12 @@ def is_marker(sliced):
         return True
 
 if __name__ == "__main__":
-    #    print(len(X[0]))
-    #print(X[0], X[4094])
-    #for i in range(len(X) - 1):
-        #marker = X[ i : i + 4 ]
-        #print(find_marker(marker))
 
     first_char = False 
     for start in range(0, len(X)):
-        #        print(f"Array len = {len(test3)}")
         stop = start + 4
         marker = X[ start : stop ]
-        #print(marker)
         first_char = is_marker(marker)
-        #print(f"start {start} stop {stop}")
         if first_char: 
             print(f"{stop}")    
             break
