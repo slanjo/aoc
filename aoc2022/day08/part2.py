@@ -55,6 +55,7 @@ if __name__ == '__main__':
                     break
             if vis_r  or vis_l  or vis_n or vis_s: 
                 VIS += 1
+#PART 2
             #right
             for m in range(h + 1, len(lines[g])):
                 if lines[g][m] < p:
@@ -83,14 +84,6 @@ if __name__ == '__main__':
                 elif lines[m][h] >= p:
                     scor_s += 1
                     break
-#           if scor_r == 0:
-#               scor_r = 1
-#           elif scor_l == 0:
-#               scor_l = 1
-#           elif scor_n == 0:
-#               scor_n = 1 
-#           elif scor_s == 0:
-#               scor_s = 1
             scor = scor_r * scor_l * scor_n * scor_s
             if scor > SCOR:
                 SCOR = scor
